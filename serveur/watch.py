@@ -1,9 +1,11 @@
 import argparse
 import os
+import json
 
-projects = {
-    "RACE" : "C:\dev\project\\race-event-app"
-}
+configPath = os.path.dirname(__file__) + '/../config/symfony-conf.json'
+with open(configPath, 'r') as f:
+    config = json.load(f)
+projects = config
 
 cmd = 'npm run watch'
 
@@ -14,7 +16,7 @@ def main():
     
     parser.add_argument(
         'project',
-        metavar='project', 
+        choices=projects.keys(),
         type=str, 
         help='Project name'
     )

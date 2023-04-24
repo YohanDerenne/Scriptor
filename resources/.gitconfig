@@ -1,0 +1,16 @@
+[alias]
+	alias = config --get-regexp ^alias\\.
+	co = checkout
+	br = branch
+	ci = commit
+	st = status --short
+	drb = push -d origin
+	tracked = branch -vv
+	lol = log --all --oneline --graph --decorate
+	ls = lol -10
+	last = log -1 HEAD
+	stat = diff --stat
+	unstage = restore --staged
+	untrack = rm -r --cached
+	# delete old branch not existing on distant
+	iso = !git fetch --all --prune && git branch --v | grep '\\[gone\\]' | awk '{print $1}' | xargs git branch -D

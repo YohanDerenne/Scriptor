@@ -1,0 +1,1 @@
+Ce dossier est référencé dans Windows avec la variable d'environnement PYTHONPATH 

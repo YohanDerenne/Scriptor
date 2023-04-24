@@ -1,1 +1,18 @@
+# Temp folder
 /temp
+
+# Config
+*conf.json
+
+# IDEA
+*.idea/
+*.iml
+
+# VSCode
+*.vscode/
+
+# Python
+__pycache__/
+
+# Temp
+*temp/
