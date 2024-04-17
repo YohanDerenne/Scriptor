@@ -2,13 +2,22 @@ import argparse
 import os
 
 projects = {
-    "LBTF" : "C:\dev\project\laboutiquefrancaise",
     "RACE" : "C:\dev\project\\race-event-app"
 }
 
+cmd = 'npm run watch'
+
 def main():   
-    parser = argparse.ArgumentParser(description='Run symfony serve on a project')
-    parser.add_argument('project', metavar='project', type=str, help='Project name')
+    parser = argparse.ArgumentParser(
+        description='Run \"' + cmd + '\" on a project'
+    )
+    
+    parser.add_argument(
+        'project',
+        metavar='project', 
+        type=str, 
+        help='Project name'
+    )
     args = parser.parse_args()
 
     if args.project in projects :
@@ -17,7 +26,7 @@ def main():
         print(projects[args.project])
         print("===============================")
         os.chdir(projects[args.project])
-        os.system('symfony serve')
+        os.system(cmd)
     else :
         print("Project \"" + args.project + "\" is unknow")
 
