@@ -1,0 +1,22 @@
+{
+    "daah": {
+        "node" : "14.20",
+        "path": "C:\\usine-dev\\workdir\\workspace18\\DAAH\\daah-sapp\\daah-sapp-ui"
+    },
+    "pub": {
+        "node" : "10.7.0",
+        "path": "C:\\usine-dev\\workdir\\workspace18\\PUB\\portail-services-ng"
+    },
+    "sddd": {
+        "node" : "14.20.1",
+        "path": "C:\\usine-dev\\workdir\\workspace18\\SELDDD\\agedepart-sapp\\agedepart-sapp-ng"
+    },
+    "dril": {
+        "node" : "16.13.1",
+        "path": "C:\\usine-dev\\workdir\\workspace18\\DRIL\\drl-sapp\\drl-sapp-ui"
+    },
+    "drp": {
+        "node" : "18.18.0",
+        "path": "C:\\usine-dev\\workdir\\workspace\\DRP\\drp-sapp\\drp-sapp-angular"
+    }
+}
