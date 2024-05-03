@@ -1,11 +1,8 @@
 import argparse
 import os
-import json
+import conf
 
-configPath = os.path.dirname(__file__) + '/../config/symfony-conf.json'
-with open(configPath, 'r') as f:
-    config = json.load(f)
-projects = config
+projects = conf.load('symfony-conf.json')
 
 cmd = 'symfony serve'
 
