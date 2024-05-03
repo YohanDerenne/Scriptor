@@ -1,4 +1,4 @@
 {
-    "login": "user",
-    "password": "pwd"
+    "git.login": "user",
+    "git.password": "pwd"
 }
