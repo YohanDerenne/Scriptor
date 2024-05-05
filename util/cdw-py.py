@@ -1,51 +1,40 @@
+import argparse
 import os
-import sys
-import subprocess
 import glob
+import conf
+import log
 
 def main():
-    # CONF
-    pathWS18 = r"C:\usine-dev\workdir\workspace18"
-    pathWS17 = r"C:\usine-dev\workdir\workspace17"
-    pathWS16 = r"C:\usine-dev\workdir\workspace16"
-    pathWS = r"C:\usine-dev\workdir\workspace"
-    versionJava6 = "1.6.0_45"
-    versionJava7 = "1.7.0_79"
-    versionJava8 = "1.8.0_191"
+    # Load Config
+    config = conf.load('cdw-conf.json')
 
-    # Root sans args
-    if len(sys.argv) == 1:
-        version = subprocess.run(
-            ['java', '-version'], capture_output=True, text=True).stderr
-        # print("version : " + version)
-        if versionJava6 in version:
-            path = pathWS16
-        if versionJava7 in version:
-            path = pathWS17
-        if versionJava8 in version:
-            path = pathWS18
-        print(path)
-        exit(0)
-
-    # VAR
-    # print(os.getcwd())
-    # os.chdir("C:/usine-dev/workdir/workspace18/SAE")
-    # subprocess.run('cd C:/usine-dev/', shell=True)
-    project = "\\" + sys.argv[1]
-
-    path = pathWS18 + project
-    findProjectAndStopIfExist(path, sys.argv[2:])
-
-    path = pathWS17 + project
-    findProjectAndStopIfExist(path, sys.argv[2:])
-
-    path = pathWS16 + project
-    findProjectAndStopIfExist(path, sys.argv[2:])
+    # Arg manager
+    parser = argparse.ArgumentParser(description='Find and change directory to project')
+    parser.add_argument(
+        'projet',
+        type=str,
+        help='Nom du projet'
+    )
+    parser.add_argument(
+        'composants',
+        nargs="*",
+        type=str,
+        help='Nom des composants'
+    )
+    args = parser.parse_args()
     
-    path = pathWS + project
-    findProjectAndStopIfExist(path, sys.argv[2:])
+    # Recherche du ws
+    if args.projet in config.keys():
+        findProjectAndStopIfExist(config[args.projet], [])
     
-    findProjectAndStopIfExist(".", sys.argv[1:])
+    # Recherche du projet/sous-projet
+    for workspace in config.keys():
+        pathWorkspace = config[workspace] + "\\" + args.projet
+        findProjectAndStopIfExist(pathWorkspace, args.composants)
+    
+    # Recherche dans le dossier courant
+    args.composants.insert(0, args.projet)
+    findProjectAndStopIfExist(".", args.composants)
 
     print('Projet introuvable')
     exit(1)
