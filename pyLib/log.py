@@ -1,8 +1,9 @@
+import sys
 import color
 
 def warn(msg): 
-    print(color.COLOR_SFC_YELLOW + "WARNING: " + msg + color.COLOR_RESET)
+    print(color.SFC_YELLOW + "WARNING: " + msg + color.RESET, file=sys.stderr)
 
 def error(msg):
-    print(color.COLOR_SFC_RED + "ERROR: " + msg + color.COLOR_RESET)
+    print(color.SFC_RED + "ERROR: " + msg + color.RESET, file=sys.stderr)
 

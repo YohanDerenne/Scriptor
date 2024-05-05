@@ -2,8 +2,8 @@
 
 set curdir=%cd%
 set pyPath=%curdir%\pyLib
-set configPath=%curdir%\config\
-set resourcesPath=%curdir%\resources\
+set configPath=%curdir%\config
+set resourcesPath=%curdir%\resources
 
 @REM ===========================================================
 @REM Check if Python is installed
@@ -73,7 +73,7 @@ goto:EOF
 :ADD_FOLDER_TO_PATH
     set folderPath=%~1
     setlocal enabledelayedexpansion
-    if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%resourcesPath%" IF NOT "%folderPath%" == "" if "!newPath:%folderPath%;=!"=="!newPath!" (
+    if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%configPath%" if NOT "%folderPath%" == "%resourcesPath%" IF NOT "%folderPath%" == "" if "!newPath:%folderPath%;=!"=="!newPath!" (
         endlocal
         echo Adding %folderPath% to PATH...
         set newPath=%newPath%%folderPath%;

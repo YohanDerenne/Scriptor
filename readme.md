@@ -5,7 +5,7 @@ Scripts utilitaires pour le développement.
 ## Installation et configuration
 
 - Installer `Python 3`
-- Dans un terminal, allez dans le projet des scripts, puis lancer `install.bat`
+- Dans un terminal, allez dans le repertoire du projet des scripts, puis lancer `install.bat`
 > Détails du programme `install.bat` : 
 > - Rajoute chaque dossiers dans le PATH des variables d'environnement Windows.
 > - Pour le dossier `pyLib` crée une variable nommé `PYTHONPATH` avec comme valeur le chemin vers `pyLib`
