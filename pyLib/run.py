@@ -2,10 +2,11 @@ import os
 import re
 import subprocess
 
-def cmd(cmd):
-    print('====================================================================')
-    print('RUN CMD : ' + re.sub("password=[^\\s]+", 'password=*******', cmd))
-    print('====================================================================')
+def cmd(cmd, showCmd=True):
+    if showCmd:
+        print('====================================================================')
+        print('RUN CMD : ' + re.sub("password=[^\\s]+", 'password=*******', cmd))
+        print('====================================================================')
     return subprocess.call(cmd, shell=True)
 
 def cmdOutput(cmd):
