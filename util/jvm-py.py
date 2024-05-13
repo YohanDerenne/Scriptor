@@ -8,9 +8,6 @@ import sys
 config = conf.load('jvm-conf.json')
 
 def main():    
-    if len(sys.argv)==1:
-        log.warn("Add in PATH : %JAVA_BIN% ; %M2_BIN% and no other link to mvn & java")
-    
     # Arg manager
     parser = argparse.ArgumentParser(description="Java Version Manager", formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument(
@@ -26,7 +23,23 @@ def main():
         action='store_true',
         help="Change java config on system, otherwise only the current terminal will be affected"
     )
+    
+    # Print help
+    if len(sys.argv) == 1 or (sys.argv[1] == "-h" or sys.argv[1] == "--help"):
+        parser.print_help(sys.stderr)
+        log.warn("Be sure to have in PATH : %JAVA_BIN% ; %M2_BIN% and no other link to mvn & java")
+        exit()   
+    
     args = parser.parse_args()
+    
+    if not windows.existInPathUser("%JAVA_BIN%"):
+        log.error("Ajouter %JAVA_BIN% dans le PATH")
+        # print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%JAVA_BIN%;")
+        exit()
+    if not windows.existInPathUser("%M2_BIN%"):
+        log.error("Ajouter %M2_BIN% dans le PATH")
+        # print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%M2_BIN%;")
+        exit()
     
     javaPath = config["versions"][args.version]["javaPath"]
     javaPathBin = config["versions"][args.version]["javaPath"] + "\\bin"
@@ -44,11 +57,6 @@ def main():
     print("set JAVA_HOME=" + javaPath)
     print("set M2_BIN=" + mavenPathBin)
     print("set M2_HOME=" + mavenPath)
-    
-    if not windows.existInPathUser("%JAVA_BIN%"):
-        print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%JAVA_BIN%;")
-    if not windows.existInPathUser("%M2_BIN%"):
-        print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%M2_BIN%;")
     
     refreshCmd = windows.getRegistrySystem(windows.systemRegDir, 'PATH') + ";" + windows.getRegistryUser(windows.defaultRegDir, 'PATH') + ";"
     print("CALL set \"PATH=" + refreshCmd + "\"")
