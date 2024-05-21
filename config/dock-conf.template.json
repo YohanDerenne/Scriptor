@@ -1,0 +1,7 @@
+{
+    "lbtf" : "docker exec -it laboutiquefrancaise-php-1 bash",
+    "build" : "docker compose build --no-cache",
+    "up" : "docker compose up -d",
+    "down" : "docker compose down --remove-orphans",
+    "rebuild" : "docker compose down --remove-orphans && docker compose build --no-cache && docker compose up -d"
+}
