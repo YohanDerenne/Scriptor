@@ -7,7 +7,7 @@
 	drb = push -d origin
 	tracked = branch -vv
 	lol = log --all --oneline --graph --decorate
-	ls = lol -10
+	ls = !git fetch | git lol -10
 	last = log -1 HEAD
 	stat = diff --stat
 	unstage = restore --staged
