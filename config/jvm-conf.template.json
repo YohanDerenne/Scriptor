@@ -1,21 +1,22 @@
 {
-    "shortcutPath": "C:\\usine-dev\\programs",
-    "versions": {
-        "6": {
-            "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-1.6.0_45",
-            "mavenPath":"C:\\usine-dev\\programs\\maven\\maven-3.0.4"
-        },
-        "7": {
-            "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-1.7.0_79",
-            "mavenPath": "C:\\usine-dev\\programs\\maven\\maven-3.3.1"
-        },
-        "8": {
-            "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-1.8.0_191",
-            "mavenPath": "C:\\usine-dev\\programs\\maven\\maven-3.6.2"
-        },
-        "11": {
-            "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-11.0.20.1+1",
-            "mavenPath": "C:\\usine-dev\\programs\\maven\\maven-3.9.4"
-        }
-    }    
+    "6": {
+        "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-1.6.0_45",
+        "mavenPath":"C:\\usine-dev\\programs\\maven\\maven-3.0.4"
+    },
+    "7": {
+        "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-1.7.0_79",
+        "mavenPath": "C:\\usine-dev\\programs\\maven\\maven-3.3.1"
+    },
+    "8": {
+        "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-1.8.0_191",
+        "mavenPath": "C:\\usine-dev\\programs\\maven\\maven-3.6.2"
+    },
+    "11": {
+        "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-11.0.20.1+1",
+        "mavenPath": "C:\\usine-dev\\programs\\maven\\maven-3.9.4"
+    },
+    "17": {
+        "javaPath": "C:\\usine-dev\\programs\\jdk\\jdk-17.0.8",
+        "mavenPath": "C:\\usine-dev\\programs\\maven\\maven-3.9.4"
+    }
 }

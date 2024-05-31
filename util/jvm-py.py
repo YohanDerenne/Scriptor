@@ -12,7 +12,7 @@ def main():
     parser = argparse.ArgumentParser(description="Java Version Manager", formatter_class=argparse.RawTextHelpFormatter)
     parser.add_argument(
         'version',
-        choices=config["versions"].keys(),
+        choices=config.keys(),
         type=str,
         help='Java version number'
     )
@@ -41,10 +41,10 @@ def main():
         # print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%M2_BIN%;")
         exit()
     
-    javaPath = config["versions"][args.version]["javaPath"]
-    javaPathBin = config["versions"][args.version]["javaPath"] + "\\bin"
-    mavenPath = config["versions"][args.version]["mavenPath"]
-    mavenPathBin = config["versions"][args.version]["mavenPath"] + "\\bin"
+    javaPath = config[args.version]["javaPath"]
+    javaPathBin = config[args.version]["javaPath"] + "\\bin"
+    mavenPath = config[args.version]["mavenPath"]
+    mavenPathBin = config[args.version]["mavenPath"] + "\\bin"
     
     if args.glob:
         print("setx JAVA_BIN " + javaPathBin)
