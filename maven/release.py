@@ -1,6 +1,5 @@
 import argparse
-import os
-import re
+import run
 import conf
 
 config = conf.load('release-conf.json')
@@ -12,6 +11,8 @@ args = None
 complement = ''
 
 def main():
+    global args
+    global complement
     phasesArgMap = {
         'prep': prepare,
         'perf': perform,
@@ -34,6 +35,20 @@ def main():
         type=str,
         help='Complément à rajouter dans les commandes exécutés'
     )
+    parser.add_argument(
+        '-sd',
+        '--skip-doc',
+        dest="skipDoc",
+        action='store_true',
+        help="Skip doc (-Dmaven.javadoc.skip=true)"
+    )
+    parser.add_argument(
+        '-ss',
+        '--skip-site',
+        dest="skipSite",
+        action='store_true',
+        help="Skip site (-Dmaven.site.skip^=true)"
+    )
 
     args = parser.parse_args()
     if args.complement is not None:
@@ -41,33 +56,30 @@ def main():
     phasesArgMap[args.phase]()
         
 def prepare():
-    exitCode = runCmd("mvn release:prepare -DpreparationGoals=\"clean verify\" -Dusername=" + loginGit + " -Dpassword=" + passwordGit + " " + complement)
+    exitCode = run.cmd("mvn release:prepare -DpreparationGoals=\"clean verify" + getOptions() + "\" -Dusername=" + loginGit + " -Dpassword=" + passwordGit + " " + getOptions() + " " + complement)
     if exitCode != 0:
         reset()
     return exitCode
 
 def perform():
-    exitCode = runCmd("mvn release:perform -Dgoals=\"deploy\" " + complement)
+    exitCode = run.cmd("mvn release:perform -Dgoals=\"deploy " + getOptions() + "\" " + getOptions() + " " + complement)
     if exitCode != 0:
         reset()
     return exitCode
 
 def master():
-    runCmd("git checkout develop && git pull --rebase && git checkout master && git pull --rebase && git merge develop --ff-only && git push && git checkout develop")
+    run.cmd("git checkout develop && git pull --rebase && git checkout master && git pull --rebase && git merge develop --ff-only && git push && git checkout develop")
 
 def reset():
-    runCmd("git clean -f && git reset --hard origin/develop")
+    run.cmd("git clean -f && git reset --hard origin/develop")
         
-def all():    
+def all():
     if prepare() != 0 : return
     if perform() != 0 : return
-    master()    
-    
-def runCmd(cmd):
-    print('====================================================================')
-    print('RUN CMD : ' + re.sub("password=[^\\s]+", 'password=*******', cmd))
-    print('====================================================================')
-    return os.system(cmd)
+    master()
+
+def getOptions():
+    return " -Dmaven.javadoc.skip=true" if args.skipDoc else "" + " -Dmaven.site.skip^=true" if args.skipSite else ""
     
 if __name__ == "__main__":
     main()
