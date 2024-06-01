@@ -12,7 +12,7 @@ def main():
         'jboss_version',
         choices=config.keys(),
         type=str,
-        help='Nom du projet'
+        help='Version de JBoss'
     )
     args = parser.parse_args()
     run.cmd(config[args.jboss_version])
