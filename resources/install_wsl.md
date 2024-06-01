@@ -1,7 +1,4 @@
 ```sh
-docker compose build --no-cache --pull
-docker compose up -d
-
 wsl install
 wsl --list
 wsl --set-default Ubuntu
