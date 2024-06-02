@@ -30,7 +30,7 @@ def main():
     # Recherche dans le dossier courant
     findProjectAndStopIfExist(".", args.composants)
 
-    print('Projet introuvable')
+    log.error('Projet introuvable')
     exit(1)
 
 def findProjectAndStopIfExist(path, sousProjets):
@@ -46,7 +46,8 @@ def findProjectAndStopIfExist(path, sousProjets):
                     cdPath = dirs[0]
                 else:
                     break
-        if len(cdPath) > 1 and path != cdPath:  
+        if len(cdPath) > 1 and path != cdPath:
+            log.info("Change directory to " + cdPath)
             print(cdPath)
             exit(0)
 

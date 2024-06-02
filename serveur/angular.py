@@ -3,7 +3,6 @@ import os
 import conf
 import terminal
 import log
-import windows
 
 def main():
     # Load Config

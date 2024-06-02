@@ -1,5 +1,6 @@
 import argparse
 import json
+import sys
 import conf
 import terminal
 
@@ -22,7 +23,7 @@ def main():
     
     args = parser.parse_args()
     if args.category is None:
-        parser.print_help()
+        parser.print_help(sys.stderr)
         exit()
         
     # Run shortcut cmd

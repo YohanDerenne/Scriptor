@@ -2,7 +2,7 @@ import sys
 import color
 
 def info(msg):
-    print("INFO: " + msg, file=sys.stderr)
+    print(color.SFC_BLUE + "INFO: " + color.RESET + msg, file=sys.stderr)
 
 def sucess(msg):
     print(color.SFC_GREEN + "SUCESS: " + msg + color.RESET, file=sys.stderr)
