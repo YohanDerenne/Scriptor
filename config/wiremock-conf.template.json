@@ -1,5 +1,0 @@
-{
-    "global": "java -jar C:\\usine-dev\\programs\\wiremock\\wiremock-jre8-standalone-2.33.2.jar --port 8001 --root-dir . --verbose",
-    "sdpub": "cd C:\\usine-dev\\workdir\\workspace16\\PUB\\suivi-dossier\\suividossier-ihm\\src\\test\\webapp\\WEB-INF\\stub && proxy",
-    "cdc": "java -jar C:\\usine-dev\\workdir\\workspace18\\SAE\\lib\\cdc-model\\src\\test\\stub\\wiremock-standalone-2.27.2.jar --port 8081 --verbose"
-}

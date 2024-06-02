@@ -1,0 +1,37 @@
+{
+    "dock": {
+        "lbtf" : "docker exec -it laboutiquefrancaise-php-1 bash",
+        "build" : "docker compose build --no-cache",
+        "up" : "docker compose up -d",
+        "down" : "docker compose down --remove-orphans",
+        "rebuild" : "docker compose down --remove-orphans && docker compose build --no-cache && docker compose up -d"
+    },
+    "jboss": {
+        "710": "C:\\usine-dev\\programs\\appserver\\startJBOSS710.cmd",
+        "710debug": "C:\\usine-dev\\programs\\appserver\\startJBOSS710debug.cmd",
+        "716": "C:\\usine-dev\\programs\\appserver\\startJBOSS716.cmd",
+        "716debug": "C:\\usine-dev\\programs\\appserver\\startJBOSS716debug.cmd",
+        "749": "C:\\usine-dev\\programs\\appserver\\startJBOSS749.cmd",
+        "749debug": "C:\\usine-dev\\programs\\appserver\\startJBOSS749debug.cmd"
+    },
+    "wm": {
+        "global": "java -jar C:\\usine-dev\\programs\\wiremock\\wiremock-jre8-standalone-2.33.2.jar --port 8001 --root-dir . --verbose",
+        "sdpub": "cd C:\\usine-dev\\workdir\\workspace16\\PUB\\suivi-dossier\\suividossier-ihm\\src\\test\\webapp\\WEB-INF\\stub && proxy",
+        "cdc": "java -jar C:\\usine-dev\\workdir\\workspace18\\SAE\\lib\\cdc-model\\src\\test\\stub\\wiremock-standalone-2.27.2.jar --port 8081 --verbose"
+    },
+    "weblo": {
+        "serve": "C:\\usine-dev\\programs\\appserver\\startWeblogic.cmd"
+    },
+    "symf": {
+        "lbtf": "symfony serve --dir=C:\\dev\\project\\laboutiquefrancaise",
+        "race": "symfony serve --dir=C:\\dev\\project\\race-event-app",
+        "stop": "symfony server:stop"
+    },
+    "watch": {
+        "race": "npm run watch --prefix C:\\dev\\project\\race-event-app"
+    },
+    "wsl": {
+        "lbtf" : "wsl --cd /projects/laboutiquefrancaise",
+        "race" : "wsl --cd /projects/race-event"
+    }
+}

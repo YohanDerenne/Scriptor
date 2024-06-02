@@ -1,6 +1,10 @@
 import os
 import re
+import signal
 import subprocess
+import sys
+
+import log
 
 def cmd(cmd, showCmd=True):
     if showCmd:
@@ -9,7 +13,11 @@ def cmd(cmd, showCmd=True):
         print('====================================================================')
         print('RUN CMD : ' + cmdSecure)
         print('====================================================================')
-    return subprocess.call(cmd, shell=True)
+    try:
+        return subprocess.call(cmd, shell=True, stdin=sys.stdin, stdout=sys.stdout)
+    except KeyboardInterrupt:
+        log.error("KeyboardInterrupt")
+        return 1
 
 def cmdOutput(cmd):
     return subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE)    
