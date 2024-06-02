@@ -1,6 +1,6 @@
 import argparse
 import conf
-import run
+import terminal
 
 def main():
     # Load Config
@@ -15,7 +15,7 @@ def main():
         help='Version de JBoss'
     )
     args = parser.parse_args()
-    run.cmd(config[args.jboss_version])
+    terminal.cmd(config[args.jboss_version])
     
 if __name__ == "__main__":
     main()

@@ -1,7 +1,7 @@
 import argparse
 import os
 import conf
-import run
+import terminal
 import log
 import windows
 
@@ -10,17 +10,17 @@ def main():
     config = conf.load('angular-conf.json')
     
     # Check if nvm is installed
-    if run.cmdHided('nvm --version'):
+    if terminal.cmdHided('nvm --version'):
         log.error("nvm n'est pas installé (introuvable)")
         exit()
         
     # Check if node is installed
-    if run.cmdHided('node --version'):
+    if terminal.cmdHided('node --version'):
         log.error("node n'est pas installé (introuvable), faire \"nvm use [version-node]\" (nvm install si besoin)")
         exit()
     
     # Check if yarn is installed
-    if run.cmdHided('yarn -v'):
+    if terminal.cmdHided('yarn -v'):
         log.error("yarn n'est pas installé (introuvable)")
         exit()
     
@@ -37,9 +37,9 @@ def main():
     # Run
     log.info("Lancement de l'IHM pour le projet " + args.project + " ")
     os.chdir(config[args.project]['path'])
-    run.cmd("nvm use " + config[args.project]['node'])
-    run.cmd("nvm current")
-    run.cmd("yarn start")
+    terminal.cmd("nvm use " + config[args.project]['node'])
+    terminal.cmd("nvm current")
+    terminal.cmd("yarn start")
     
 if __name__ == "__main__":
     main()

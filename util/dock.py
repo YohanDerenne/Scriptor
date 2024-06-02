@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import argparse
 import conf
-import run
+import terminal
 
 # Load Config
 config = conf.load('dock-conf.json')
@@ -17,7 +17,7 @@ def main():
     )
     
     args = parser.parse_args()
-    run.cmd(config[args.name])
+    terminal.cmd(config[args.name])
 
 if __name__ == '__main__':
     main()

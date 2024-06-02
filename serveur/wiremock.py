@@ -1,6 +1,6 @@
 import argparse
 import conf
-import run
+import terminal
 
 def main():
     # Load Config
@@ -15,7 +15,7 @@ def main():
         help='Nom du projet'
     )
     args = parser.parse_args()
-    run.cmd(config[args.projet])
+    terminal.cmd(config[args.projet])
     
 if __name__ == "__main__":
     main()

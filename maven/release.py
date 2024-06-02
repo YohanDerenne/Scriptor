@@ -1,5 +1,5 @@
 import argparse
-import run
+import terminal
 import conf
 
 config = conf.load('release-conf.json')
@@ -56,22 +56,22 @@ def main():
     phasesArgMap[args.phase]()
         
 def prepare():
-    exitCode = run.cmd("mvn release:prepare -DpreparationGoals=\"clean verify" + getOptions() + "\" -Dusername=" + loginGit + " -Dpassword=" + passwordGit + " " + getOptions() + " " + complement)
+    exitCode = terminal.cmd("mvn release:prepare -DpreparationGoals=\"clean verify" + getOptions() + "\" -Dusername=" + loginGit + " -Dpassword=" + passwordGit + " " + getOptions() + " " + complement)
     if exitCode != 0:
         reset()
     return exitCode
 
 def perform():
-    exitCode = run.cmd("mvn release:perform -Dgoals=\"deploy " + getOptions() + "\" " + getOptions() + " " + complement)
+    exitCode = terminal.cmd("mvn release:perform -Dgoals=\"deploy " + getOptions() + "\" " + getOptions() + " " + complement)
     if exitCode != 0:
         reset()
     return exitCode
 
 def master():
-    run.cmd("git checkout develop && git pull --rebase && git checkout master && git pull --rebase && git merge develop --ff-only && git push && git checkout develop")
+    terminal.cmd("git checkout develop && git pull --rebase && git checkout master && git pull --rebase && git merge develop --ff-only && git push && git checkout develop")
 
 def reset():
-    run.cmd("git clean -f && git reset --hard origin/develop")
+    terminal.cmd("git clean -f && git reset --hard origin/develop")
         
 def all():
     if prepare() != 0 : return
