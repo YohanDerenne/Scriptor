@@ -1,21 +1,34 @@
 import argparse
+import json
 import os
 import glob
+import sys
 import conf
 import log
+import string_util
 
 def main():
     # Load Config
     config = conf.load('cdw-conf.json')
 
     # Arg manager
-    parser = argparse.ArgumentParser(description='Find and change directory to project')
+    parser = argparse.ArgumentParser(
+        description='Find and change directory to project.\nWorkspaces :\n ' + string_util.dictionnaryToString(config),
+        formatter_class=argparse.RawTextHelpFormatter
+    )
     parser.add_argument(
         'composants',
         nargs="*",
         type=str,
         help='Nom des composants'
     )
+    
+    # Help
+    if len(sys.argv) == 1 or (sys.argv[1] == "-h" or sys.argv[1] == "--help"):
+        parser.print_help(sys.stderr)
+        exit()
+        
+    # Parse args
     args = parser.parse_args()
     
     # Recherche du ws
