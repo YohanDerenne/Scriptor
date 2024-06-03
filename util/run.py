@@ -2,6 +2,7 @@ import argparse
 import json
 import sys
 import conf
+import string_util
 import terminal
 
 def main():
@@ -18,7 +19,7 @@ def main():
             'key',
             choices=config[category].keys(),
             type=str,   
-            help="Shortcut key and command associated: \n " + (json.dumps(config[category]).replace(",", ",\n").replace("{", "").replace("}", ""))
+            help="Shortcut key and command associated: \n " + string_util.dictionnaryToString(config[category])
         )        
     
     args = parser.parse_args()
