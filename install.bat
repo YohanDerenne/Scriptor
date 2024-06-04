@@ -3,6 +3,7 @@
 set curdir=%cd%
 set pyPath=%curdir%\pyLib
 set configPath=%curdir%\config
+set configPathTemplate=%curdir%\config-template
 set resourcesPath=%curdir%\resources
 
 @REM ===========================================================
@@ -73,7 +74,7 @@ goto:EOF
 :ADD_FOLDER_TO_PATH
     set folderPath=%~1
     setlocal enabledelayedexpansion
-    if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%configPath%" if NOT "%folderPath%" == "%resourcesPath%" IF NOT "%folderPath%" == "" if "!newPath:%folderPath%;=!"=="!newPath!" (
+    if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%pyPath%" if NOT "%folderPath%" == "%configPath%" if NOT "%folderPath%" == "%configPathTemplate%" if NOT "%folderPath%" == "%resourcesPath%" IF NOT "%folderPath%" == "" if "!newPath:%folderPath%;=!"=="!newPath!" (
         endlocal
         echo Adding %folderPath% to PATH...
         set newPath=%newPath%%folderPath%;
