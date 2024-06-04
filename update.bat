@@ -1,6 +1,6 @@
 @echo off
 
-set curdir=%cd%
+set curdir=%~dp0
 set pyPath=%curdir%\pyLib
 set configPath=%curdir%\config
 set configPathTemplate=%curdir%\config-template
