@@ -1,14 +1,43 @@
 import sys
 import color
 
+config = {
+    "ERROR": {
+        "LEVEL" : "ERROR",
+        "COLOR" : color.SFC_RED
+    },
+    "SUCCESS": {
+        "LEVEL" : "SUCCESS",
+        "COLOR" : color.SFC_GREEN
+    },
+    "INFO": {
+        "LEVEL" : "INFO",
+        "COLOR" : color.SFC_BLUE
+    },
+    "WARNING": {
+        "LEVEL" : "WARNING",
+        "COLOR" : color.SFC_YELLOW
+    },
+    "DEBUG": {
+        "LEVEL" : "DEBUG",
+        "COLOR" : color.SFC_GREY
+    },
+}
+
+def __logger(configLevel, msg):
+    print("[" + configLevel["COLOR"] + configLevel["LEVEL"] + color.RESET + "] " + msg, file=sys.stderr)
+    
 def info(msg):
-    print(color.SFC_BLUE + "INFO: " + color.RESET + msg, file=sys.stderr)
+    __logger(config["INFO"], msg)
 
 def sucess(msg):
-    print(color.SFC_GREEN + "SUCESS: " + msg + color.RESET, file=sys.stderr)
+    __logger(config["SUCCESS"], msg)
     
 def warn(msg): 
-    print(color.SFC_YELLOW + "WARNING: " + msg + color.RESET, file=sys.stderr)
+    __logger(config["WARNING"], msg)
 
 def error(msg):
-    print(color.SFC_RED + "ERROR: " + msg + color.RESET, file=sys.stderr)
+    __logger(config["ERROR"], msg)
+
+def debug(msg):
+    __logger(config["DEBUG"], msg)
