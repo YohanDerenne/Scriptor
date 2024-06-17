@@ -17,6 +17,7 @@ Scripts utilitaires pour le développement.
 
 ## Informations
 
+- `VSCode` est recommandé avec des plugins pour interpréter python, bat et json. Ouvrir le dossier cloné avec VSCode
 - Le dossier `resources` contient des fichiers utiles pour la configuration du développement
 - Un dossier `temp` peut être créé pour des fichiers temporaires, ils seront ignorés du repo git
 - Pour voir la liste des commandes, taper dans un terminal la commande suivante : `scriptor`
