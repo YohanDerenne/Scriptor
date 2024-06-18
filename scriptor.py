@@ -1,5 +1,6 @@
 import os
 import re
+import log
 
 ignoreFilesInDirectories = [
     ".git",
@@ -22,9 +23,11 @@ validFileNameKeys = [
 
 def main():
     scripts = getListScriptsName()    
-    print("Available scripts (" + str(len(scripts)) + "):\n")
+    log.info("Available commands:\n")
     for script in scripts:
         print(script)
+    print("")
+    log.info("TOTAL : " + str(len(scripts)))
         
 def getListScriptsName():
     scripts = []
