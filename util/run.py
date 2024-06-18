@@ -10,7 +10,7 @@ def main():
     config = conf.load('run-conf.json')
     
     # Arg manager
-    parser = argparse.ArgumentParser(description='Launch shortcut form config file')
+    parser = argparse.ArgumentParser(description='Launch shortcut from config file')
     subparsers = parser.add_subparsers(help='Shortcut category', dest='category')
     
     for category in config:
