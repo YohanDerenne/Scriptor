@@ -33,7 +33,10 @@ def main():
     
     # Recherche du ws
     if len(args.composants) == 1 and args.composants[0] in config.keys():
-        findProjectAndStopIfExist(config[args.composants[0]], [])
+        cdPath = config[args.composants[0]]
+        log.info("Change directory to " + cdPath)
+        print(cdPath)
+        exit()
         
     # Recherche du projet
     for workspace in config.keys():
