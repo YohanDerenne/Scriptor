@@ -37,7 +37,7 @@ def getListScriptsName():
             continue
         for fileName in fileNames:
             if isNotIgnorableFile(fileName):
-                scripts.append(re.sub("\..*", '', fileName))
+                scripts.append(re.sub(r"\..*", '', fileName))
     scripts.sort()
     return scripts
 
