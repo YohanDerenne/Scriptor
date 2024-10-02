@@ -13,7 +13,7 @@ Scripts utilitaires pour le développement.
 >   - Cette variable permets à tout scripts python d'importer des fichiers python situés dans ce répertoire (librairie globale)
 > - Associe les fichier `.py` à `python.exe`
 - Créer vos propre configurations à partir des fichiers `template` dans le dossier `config`
-  -  Ex : Créer le fichier `config/release-conf.json` à partir `config/release-conf.template.json` (dans le même dossier, avec vos propriétés perso)
+  -  Ex : Créer le fichier `config/release-conf.json` à partir `config-template/release-conf.json` (dans le même dossier, avec vos propriétés perso)
 
 ## Informations
 
