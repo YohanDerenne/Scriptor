@@ -34,7 +34,7 @@ def main():
     args = parser.parse_args()
     
     # Run
-    log.info("Lancement de l'IHM pour le projet " + args.project + " ")
+    log.info("Lancement de l'IHM pour le projet " + args.project)
     os.chdir(config[args.project]['path'])
     terminal.cmd("nvm use " + config[args.project]['node'])
     terminal.cmd("nvm current")
