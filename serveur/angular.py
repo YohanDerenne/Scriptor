@@ -9,13 +9,13 @@ def main():
     config = conf.load('angular-conf.json')
     
     # Check if nvm is installed
-    if terminal.cmdHided('nvm --version'):
-        log.error("nvm n'est pas installé (introuvable)")
+    if terminal.cmdHided('volta -v'):
+        log.error("volta n'est pas installé (introuvable)")
         exit()
         
     # Check if node is installed
     if terminal.cmdHided('node --version'):
-        log.error("node n'est pas installé (introuvable), faire \"nvm use [version-node]\" (nvm install si besoin)")
+        log.error("node n'est pas installé (introuvable), faire \"volta install node@[version-node]\"")
         exit()
     
     # Check if yarn is installed
@@ -36,8 +36,7 @@ def main():
     # Run
     log.info("Lancement de l'IHM pour le projet " + args.project)
     os.chdir(config[args.project]['path'])
-    terminal.cmd("nvm use " + config[args.project]['node'])
-    terminal.cmd("nvm current")
+    terminal.cmd("volta install node@" + config[args.project]['node'])
     terminal.cmd("yarn start")
     
 if __name__ == "__main__":
