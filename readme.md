@@ -21,3 +21,19 @@ Scripts utilitaires pour le développement.
 - Le dossier `resources` contient des fichiers utiles pour la configuration du développement
 - Un dossier `temp` peut être créé pour des fichiers temporaires, ils seront ignorés du repo git
 - Pour voir la liste des commandes, taper dans un terminal la commande suivante : `scriptor`
+
+## Exemple Task Cmder
+
+```sh
+run jboss 749debug -new_console:t:"JBoss749X" -new_console:C:"C:\Scriptor\resources\icon\redhat.ico"
+```
+
+```sh
+angular drp -new_console:t:"Angular DRP" -new_console:C:"C:\Scriptor\resources\icon\angular.ico"
+```
+
+```sh
+{Postgres SQL}
+{JBoss 749x}
+{Angular DRP}
+```
