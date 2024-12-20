@@ -1,4 +1,5 @@
 import argparse
+import os
 import conf
 import windows
 import log
@@ -32,21 +33,25 @@ def main():
     
     args = parser.parse_args()
     
-    if not windows.existInPathUser("%JAVA_BIN%"):
-        log.error("Ajouter %JAVA_BIN% dans le PATH")
-        # print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%JAVA_BIN%;")
-        exit()
-    if not windows.existInPathUser("%M2_BIN%"):
-        log.error("Ajouter %M2_BIN% dans le PATH")
-        # print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%M2_BIN%;")
-        exit()
-    
     javaPath = config[args.version]["javaPath"]
     javaPathBin = config[args.version]["javaPath"] + "\\bin"
     mavenPath = config[args.version]["mavenPath"]
     mavenPathBin = config[args.version]["mavenPath"] + "\\bin"
     
     if args.glob:
+        log.warn("Admin rights required")
+
+        # Check requirement
+        if not windows.existInPathSystem("%JAVA_BIN%"):
+            log.error("Ajouter %JAVA_BIN% dans le PATH Systeme (admin)")
+            # print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%JAVA_BIN%;")
+            exit()
+        if not windows.existInPathSystem("%M2_BIN%"):
+            log.error("Ajouter %M2_BIN% dans le PATH Systeme (admin)")
+            # print("setx PATH \"" + windows.getEnvVarUser('PATH') + ";%M2_BIN%;")
+            exit()
+        
+        # Apply
         print("setx JAVA_BIN " + javaPathBin)
         print("setx JAVA_HOME " + javaPath)
         print("setx M2_BIN " + mavenPathBin)
@@ -58,8 +63,8 @@ def main():
     print("set M2_BIN=" + mavenPathBin)
     print("set M2_HOME=" + mavenPath)
     
-    refreshCmd = windows.getRegistrySystem(windows.systemRegDir, 'PATH') + ";" + windows.getRegistryUser(windows.defaultRegDir, 'PATH') + ";"
-    print("CALL set \"PATH=" + refreshCmd + "\"")
+    refreshCmd = os.environ['PATH']
+    print("CALL set \"PATH=" + javaPathBin + ";" + mavenPathBin + ";" + refreshCmd + "\"")
     print("mvn -v")
 
 if __name__ == '__main__':
