@@ -22,7 +22,7 @@ def main():
     
     # Regex old log files
     PATTERN_DATE = "[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])"
-    PATTERN_EXT_LOG = "\.log"
+    PATTERN_EXT_LOG = "\\.log"
     regex = re.compile('.*(' + PATTERN_DATE + '.*' + PATTERN_EXT_LOG + '|' + PATTERN_EXT_LOG + '.*' + PATTERN_DATE + ".*)")
 
     # Get list of old log files path
