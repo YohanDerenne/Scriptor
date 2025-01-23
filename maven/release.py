@@ -9,6 +9,8 @@ passwordGit = config['git.password']
 
 args = None
 complement = ''
+skipDoc = "-Dmaven.javadoc.skip=true"
+skipSite = "-Dmaven.site.skip^=true"
 
 def main():
     global args
@@ -40,23 +42,24 @@ def main():
         '--skip-doc',
         dest="skipDoc",
         action='store_true',
-        help="Skip doc (-Dmaven.javadoc.skip=true)"
+        help="Skip doc (" + skipDoc + ")"
     )
     parser.add_argument(
         '-ss',
         '--skip-site',
         dest="skipSite",
         action='store_true',
-        help="Skip site (-Dmaven.site.skip^=true)"
+        help="Skip site (" + skipSite + ")"
     )
 
     args = parser.parse_args()
     if args.complement is not None:
+        print(args.complement)
         complement = args.complement
     phasesArgMap[args.phase]()
         
 def prepare():
-    exitCode = terminal.cmd("mvn release:prepare -DpreparationGoals=\"clean verify" + getOptions() + "\" -Dusername=" + loginGit + " -Dpassword=" + passwordGit + " " + getOptions() + " " + complement)
+    exitCode = terminal.cmd("mvn release:prepare -DpreparationGoals=\"clean verify " + getOptions() + "\" -Dusername=" + loginGit + " -Dpassword=" + passwordGit + " " + getOptions() + " " + complement)
     if exitCode != 0:
         reset()
     return exitCode
@@ -79,7 +82,7 @@ def all():
     master()
 
 def getOptions():
-    return " -Dmaven.javadoc.skip=true" if args.skipDoc else "" + " -Dmaven.site.skip^=true" if args.skipSite else ""
+    return (skipDoc if args.skipDoc else "" ) + " " + (skipSite if args.skipSite else "")
     
 if __name__ == "__main__":
     main()
