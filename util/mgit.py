@@ -57,38 +57,35 @@ def main():
             return
         
         print()
+        log.info("==============================================")
         log.info(f"Repo : {dir}")
+        log.info("==============================================")
 
-        if args.fetch :
+        if args.fetch or args.pull :
             log.info("Fetching...")
-            result = terminal.cmdOutput(f"git -C {dir} fetch --all --quiet")
-            error = terminal.getError(result)
-            if error != "":
-                log.error(terminal.getError(result))
+            fetch = terminal.cmdOutput(f"git -C {dir} fetch --all --quiet")
+            if fetch.returncode:
+                log.error(terminal.getError(fetch))
             else :
-                res = terminal.cmdOutput(f"git -C {dir} for-each-ref --sort=-committerdate --format=\"[%(refname:short)-%(authorname)] %(subject)\" refs/heads/ | head -n 1")
-                if error != "":
-                    log.error(terminal.getError(res))
+                lastCommit = terminal.cmdOutput(f"git -C {dir} for-each-ref --sort=-committerdate --format=\"Last commit : %(refname:short) -> %(authorname) %(subject)\" refs/heads/ | head -n 1")
+                if lastCommit.returncode:
+                    log.error(terminal.getError(lastCommit))
                 else :
-                    log.sucess(f"Last commit : {terminal.getOutput(res)}")
-
+                    log.sucess(terminal.getOutput(lastCommit))
 
         if args.checkout :
             log.info(f"Switching to branch {args.checkout}...")
-            result = terminal.cmdOutput(f"git -C {dir} checkout {args.checkout}")
-            error = terminal.getError(result)
-            if error != "":
-                log.error(terminal.getError(result))
+            checkout = terminal.cmdOutput(f"git -C {dir} checkout {args.checkout}")
+            if checkout.returncode:
+                log.error(terminal.getError(checkout))
             else :
-                res = terminal.cmdOutput(f"git -C {dir} log -1 --pretty=format:\"%h %an - %s\"")
-                if error != "":
-                    log.error(terminal.getError(res))
-                else :
-                    log.sucess(f"Switch to {args.checkout} : {terminal.getOutput(res)}")
+                log.sucess(terminal.getError(checkout))
 
         # TODO : Add pull rebase
         # TODO : Format output f"...{var}..."
         # TODO : Add color to branch name if master/main or dev/develop
+        # TODO : Doc each function in readme
+        # TODO : resumé
 
 if __name__ == '__main__':
     main()
