@@ -1,6 +1,7 @@
 import argparse
 import os
 import sys
+import color
 import conf
 import log
 import terminal
@@ -52,14 +53,15 @@ def main():
         if not os.path.isdir(dir):
             log.error(f"{dir} is not a valid directory.")
             return
+            
         if not os.path.isdir(os.path.join(dir, ".git")):
             log.error(f"{dir} is not a git directory.")
             return
         
         print()
-        log.info("==============================================")
-        log.info(f"Repo : {dir}")
-        log.info("==============================================")
+        log.info("==================================================================================")
+        log.info(f"Repo : {dir} -> {colorBranch(getCurrentBranch(dir))}{colorBranch(f' -> {args.checkout}' if args.checkout else '')}")
+        log.info("==================================================================================")
 
         if args.fetch or args.pull :
             log.info("Fetching...")
@@ -86,6 +88,16 @@ def main():
         # TODO : Add color to branch name if master/main or dev/develop
         # TODO : Doc each function in readme
         # TODO : resumé
+        # TODO : status
+
+def colorBranch(branch):
+    colorBranch = color.SFC_YELLOW if branch == "master" or branch == "main" \
+        else color.SFC_GREEN if branch == "dev" or branch == "develop" \
+        else color.SFC_MAGENTA
+    return colorBranch + branch + color.RESET
+
+def getCurrentBranch(dir):
+    return terminal.getOutput(terminal.cmdOutput(f"git -C {dir} branch --show-current"))
 
 if __name__ == '__main__':
     main()
