@@ -8,9 +8,6 @@ config/*.json
 *.idea/
 *.iml
 
-# VSCode
-*.vscode/
-
 # Python
 __pycache__/
 

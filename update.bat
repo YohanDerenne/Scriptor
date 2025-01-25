@@ -1,9 +1,10 @@
 @echo off
 
 set curdir=%~dp0
-set pyPath=%curdir%\pyLib
+set scriptdir=%curdir%\script
+set pyPath=%curdir%\script\lib
 set configPath=%curdir%\config
-set configPathTemplate=%curdir%\config-template
+set configPathTemplate=%curdir%\config\config-template
 set resourcesPath=%curdir%\resources
 
 @REM ===========================================================
@@ -48,11 +49,8 @@ FOR /F "tokens=*" %%g IN ('powershell -NoProfile -Command "(Get-ItemProperty HKC
 set initialPath=%newPath%;
 set newPath=%newPath%;
 
-@REM Add script dir to PATH
-CALL:ADD_FOLDER_TO_PATH %curdir%
-
 @REM For each folder
-for /d %%i in (%curdir%\*) do (
+for /d %%i in (%scriptdir%\*) do (
     call:ADD_FOLDER_TO_PATH "%%i"
 )
 

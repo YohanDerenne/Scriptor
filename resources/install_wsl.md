@@ -14,7 +14,7 @@ cd /mnt/c/scripts/serveur/
 find -type f -print0 | xargs -0 dos2unix
 
 nano ~/.bashrc
-export PYTHONPATH="${PYTHONPATH}:/mnt/c/scripts/pyLib"
+export PYTHONPATH="${PYTHONPATH}:/mnt/c/scripts/lib"
 
 nvm
 https://monovm.com/blog/install-nvm-on-ubuntu/

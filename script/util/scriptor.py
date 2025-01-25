@@ -7,7 +7,7 @@ ignoreFilesInDirectories = [
     "resources",
     "config"
     "config-template",
-    "pyLib",
+    "lib",
 ]
 
 ignoreFileNameKeys = [
@@ -31,7 +31,7 @@ def main():
         
 def getListScriptsName():
     scripts = []
-    scriptorPath = os.path.dirname(__file__)
+    scriptorPath = os.path.dirname(__file__) + '/../'
     for path, subdirs, fileNames in os.walk(scriptorPath):
         if isIgnorableDirectory(path) :
             continue

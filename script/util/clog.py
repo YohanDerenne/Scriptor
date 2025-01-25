@@ -5,7 +5,7 @@ import conf
 import log
 
 # Load Config
-config = conf.load('cleanlog-conf.json')
+config = conf.load('clog-conf.json')
 
 def main():    
     # Arg manager

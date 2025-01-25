@@ -2,7 +2,7 @@ import json
 import os
 import log
 
-confFolder = os.path.dirname(__file__) + '/../config/'
+confFolder = os.path.dirname(__file__) + '/../../config/'
 confTemplateFolder = os.path.dirname(__file__) + '/../config-template/'
 
 def load(jsonFileName):
