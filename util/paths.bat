@@ -1,2 +1,2 @@
 @echo off
-path | tr ";" "\n"
+path | tr ";" "\n" | tr "=" "\n"
