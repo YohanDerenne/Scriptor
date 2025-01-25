@@ -1,6 +1,7 @@
 {
-    "ex" : [
-        "C:\\Scripts",
-        "C:\\Scripts"
+    "example" : [
+        "C:\\project\\example\\front",
+        "C:\\project\\example\\back",
+        "C:\\project\\example\\util"
     ]
 }

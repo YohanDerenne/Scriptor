@@ -57,24 +57,25 @@ def main():
     args = parser.parse_args()
 
     for dir in config[args.project] :
+        print()
         if not os.path.isdir(dir):
             log.error(f"{dir} is not a valid directory.")
-            return
+            hasError = True
+            continue
             
         if not os.path.isdir(os.path.join(dir, ".git")):
             log.error(f"{dir} is not a git directory.")
-            return
+            hasError = True
+            continue
         
-        print()
-        initialBranch = getCurrentBranch(dir);
+        initialBranch = getCurrentBranch(dir)
         targetBranch = args.checkout if args.checkout and checkIfBranchExist(dir, args.checkout) else initialBranch
-
         infoCheckoutBranch = f'-> {colorBranch(dir, args.checkout)} ' if args.checkout else ''
         log.info("==================================================================================")
-        log.info(f"Repo : {dir} -> {colorBranch(dir, initialBranch)} {infoChanges(dir)}{infoCheckoutBranch}{infoBehind(dir, targetBranch)}{infoAhead(dir, targetBranch)}")
+        log.info(f"Repo : {dir}" + (f" -> {colorBranch(dir, initialBranch)} {infoChanges(dir)}{infoCheckoutBranch}{infoBehind(dir, targetBranch)}{infoAhead(dir, targetBranch)}" if args.checkout else ''))
         log.info("==================================================================================")
 
-        if args.fetch or args.pull :
+        if args.fetch or args.pull : 
             log.info("Fetching...")
             fetch = terminal.cmdOutput(f"git -C {dir} fetch --all --quiet")
             if fetch.returncode:
@@ -105,16 +106,18 @@ def main():
                 log.error(terminal.getError(result))
             else :
                 log.sucess(terminal.getError(result))
+
+        if args.log :
+            log.info(f"Last commits :")
+            result = terminal.cmdOutput(f"git -C {dir} log --all --oneline --graph --decorate -5 --color")
+            if result.returncode:
+                hasError = True
+                log.error(terminal.getError(result))
+            else :
+                print(terminal.getOutput(result))
         
         finalBranch = getCurrentBranch(dir);
         log.info(getRepoName(dir) + " -> " + colorBranch(dir, finalBranch) + " " + infoChanges(dir) + infoBehind(dir, finalBranch) + infoAhead(dir, finalBranch))
-
-        # TODO : Add pull rebase
-        # TODO : Format output f"...{var}..."
-        # TODO : Add color to branch name if master/main or dev/develop
-        # TODO : Doc each function in readme
-        # TODO : resumé
-    
 
     print()
     if hasError :
