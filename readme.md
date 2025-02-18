@@ -42,6 +42,20 @@ angular drp -new_console:t:"Angular DRP" -new_console:C:"C:\Scriptor\resources\i
 
 > ℹ : Pour plus d'informations sur une commande et ses arguments, taper la commande suivi de l'option `-h` ou `--help`
 
+### Alias
+
+`cl` : Clean le terminal
+
+`lsa` : Raccourci pour afficher lister en détail les fichiers et dossier du repertoire courant.
+
+`paths` : Permets d'afficher les différents répertoires proprement du path windows
+
+### Git
+
+`gitalias` : Ajoute des alias dans la configuration global de git. (Voir `.gitconfig` dans le dossier `resources`)
+
+`mgit` : Permets de réaliser des commandes git sur plusieurs projets en même temps pour avoir un état des lieux rapidement et réaliser des procédure simples. Remplir la configuration des différents groupements de projets git sur `mgit-conf.json`
+
 ### Maven
 
 `release` : Permet de faire des releases avec maven, réalise le `prepare`, le `perform` ainsi que la montée de `master`. En cas d'erreur, un roll back est réalisé avec un reset git, donc pas de commit ni de fichier temporaire gardé, tout est nettoyé. La config `release-conf.json` est nécessaire pour avoir le nom de l'utilisateur et le mot de passe git qui sera utilisé dans les commandes.
@@ -60,17 +74,9 @@ angular drp -new_console:t:"Angular DRP" -new_console:C:"C:\Scriptor\resources\i
 
 `cdw` : Permet de changer rapidement de répertoires pour aller sur un projet d'un workspace. Les workspaces sont à renseigner dans la config associée `cdw-conf.json`. Il est également possible de se déplacer dans un workspace directement et indiquant le nom du workspace.
 
-`cl` : Clean le terminal
-
 `clog` : Clean les vieux fichiers datés dans le repetoire de log. Indiquer les fichiers de log dans la configuration `clog-conf.json`
 
 `jvm` : Permet de changer de version de java et maven rapidement (mise à jour des path). Pour un changement de java/maven du systeme (option `-g`), ajouter au préalable `%JAVA_BIN%` et `%M2_BIN%` dans le `PATH` Systeme (admin). Spécifier les associations java/maven dans la configuration `jvm-conf.`
-
-`la` : Raccourci pour afficher lister en détail les fichiers et dossier du repertoire courant.
-
-`mgit` : Permets de réaliser des commandes git sur plusieurs projets en même temps pour avoir un état des lieux rapidement et réaliser des procédure simples. Remplir la configuration des différents groupements de projets git sur `mgit-conf.json`
-
-`paths` : Permets d'afficher les différents répertoires proprement du path windows
 
 `run` : Permet de créer des alias de commandes simple. Les alias sont à renseigner dans la configuration `run-conf.json`
 
