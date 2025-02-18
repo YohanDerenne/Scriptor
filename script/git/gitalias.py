@@ -1,3 +1,4 @@
+import argparse
 import configparser
 import os
 
@@ -7,6 +8,9 @@ gitConfigGlobalPath = os.path.expanduser("~") + '/.gitconfig'
 gitConfigScriptorPath = os.path.dirname(__file__) + '/../../resources/.gitconfig'
 
 def main():
+
+    argparse.ArgumentParser(description='Inject alias in git config global file').parse_args()
+
     # Check files
     if not os.path.exists(gitConfigGlobalPath):
         log.error(f"Global gitconfig file '{gitConfigGlobalPath}' not found.")
