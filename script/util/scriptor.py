@@ -11,8 +11,7 @@ ignoreFilesInDirectories = [
 ]
 
 ignoreFileNameKeys = [
-    "-py.py",
-    "set_colors.bat"
+    "-py.py"
 ]
 
 validFileNameKeys = [
