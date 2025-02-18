@@ -1,1 +1,2 @@
+#!/bin/bash
 code ~/.bashrc
