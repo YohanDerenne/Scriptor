@@ -12,5 +12,7 @@
 	stat = diff --stat
 	unstage = restore --staged
 	untrack = rm -r --cached
+	# git rm -r --cached $(git ls-files -ci --exclude-from=.gitignore)
+	untrackall = !git ls-files -z | xargs -0 git rm --cached
 	# delete local old branch not existing on distant
 	iso = !git fetch --all --prune && git branch --v | grep '\\[gone\\]' | awk '{print $1}' | xargs git branch -D
